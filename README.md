@@ -2,4 +2,6 @@
 script para setup de ambiente
 
 
-necessário executar comando chmod +X setup.sh
+necessário executar os seguintes comandos:
+chmod +X setup.sh
+./setup.sh
