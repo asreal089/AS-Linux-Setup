@@ -5,6 +5,6 @@ usar script na home de ambiente linux debian.
 
 necessário executar os seguintes comandos:
 
-chmod +X setup.sh
+chmod u+x setup.sh
 
 ./setup.sh
