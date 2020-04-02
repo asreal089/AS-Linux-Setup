@@ -118,7 +118,7 @@ echo  'export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"' >> ~/.bashrc
 echo  'export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"' >> ~/.bashrc
 
 trilha "reload do bashrc"
-. ~/.bashrc
+exec bash
 
 trilha "movendo settings.xml para diretorio do M2"
 mv settings.xml .m2/settings.xml
