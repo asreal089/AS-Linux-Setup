@@ -64,10 +64,24 @@ sudo apt-get install libgconf-2-4
 sudo apt-get install libunwind8
 
 trilha "instalando MSSQL-SERVER"
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add –
+curl https://packages.microsoft.com/config/ubuntu/18.04/mssql-server-2019.list | sudo tee /etc/apt/sources.list.d/mssql-server.list
 sudo apt-get update
 sudo apt-get install mssql-server
+
+trilha "configurando MSSQL-SERVER"
+sudo /opt/mssql/bin/sqlservr-setup
+
+trilha "instalando POSTGRE"
+sudo apt install postgresql postgresql-contrib
+
+trilha "configurando POSTGRE"
+trilha "criando banco de dados Dude"
+sudo -u postgres psql -U postgres -d postgres -c "create database dude"
+trilha "criando use pld senha pld"
+sudo -u postgres psql -U postgres -d postgres -c "create user pld with encrypted password 'pld'"
+trilha "dando acesso a pld para banco dude"
+sudo -u postgres psql -U postgres -d postgres -c "grant all privileges on database dude to pld;"
 
 trilha "isntalando VScode"
 deb [arch=amd64] http://packages.microsoft.com/repos/vscode stable main
