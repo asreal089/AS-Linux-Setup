@@ -31,6 +31,7 @@ sudo apt-get update
 sudo apt-get install sublime-text
 
 trilha "instalando vim"
+sudo apt-get install vim -y
 
 trilha "instalando openssh"
 sudo apt-get install -y openssh-server openssh-client
@@ -38,7 +39,6 @@ sudo apt-get install -y openssh-server openssh-client
 trilha "gerando keygen"
 ssh-keygen
 
-sudo apt-get install vim -y
 
 trilha "instalando git"
 
@@ -48,9 +48,24 @@ trilha "instalando mercurial"
 
 sudo apt-get install mercurial
 
-trilha "instalando JDK"
+trilha "install oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-sudo apt-get install openjdk-8-jdk -y
+trilha "install drakula theme terminal"
+sudo apt-get install dconf-cli
+git clone https://github.com/dracula/gnome-terminal
+./gnome-terminal/install.sh
+
+trilha "node js npm and yarn"
+sudo apt install yarn
+sudo apt install nodejs
+sudo apt install npm
+
+trilha "instalando JDK 8 corretto Amazon"
+wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
+sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+sudo apt update
+sudo apt install -y java-1.8.0-amazon-corretto-jdk
 
 trilha "instalando DBEAVER"
 wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
@@ -58,6 +73,7 @@ echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list
 sudo apt update
 sudo apt install dbeaver-ce
 
+trilha "COMEÇANDO A INSTALAÇÃO DOS BANCOS DE DADOS"
 trilha "instalando libs da microsoft"
 sudo apt-get install libxss1
 sudo apt-get install libgconf-2-4
@@ -76,12 +92,16 @@ trilha "instalando POSTGRE"
 sudo apt install postgresql postgresql-contrib
 
 trilha "configurando POSTGRE"
-trilha "criando banco de dados Dude"
-sudo -u postgres psql -U postgres -d postgres -c "create database dude"
+trilha "criando banco de dados pld"
+sudo -u postgres psql -U postgres -d postgres -c "create database pld"
 trilha "criando use pld senha pld"
 sudo -u postgres psql -U postgres -d postgres -c "create user pld with encrypted password 'pld'"
-trilha "dando acesso a pld para banco dude"
+trilha "dando acesso a pld para banco pld"
 sudo -u postgres psql -U postgres -d postgres -c "grant all privileges on database dude to pld;"
+
+trilha "instalando mysql"
+sudo apt install mysql-server
+sudo mysql_secure_installation
 
 trilha "isntalando VScode"
 deb [arch=amd64] http://packages.microsoft.com/repos/vscode stable main
@@ -117,11 +137,5 @@ echo  'export M2_HOME=$HOME/JAVA_AML_SETUP/apache-maven-3.3.3' >> ~/.bashrc
 echo  'export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"' >> ~/.bashrc 
 echo  'export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"' >> ~/.bashrc
 
-trilha "reload do bashrc"
-exec bash
-
 trilha "movendo settings.xml para diretorio do M2"
 mv settings.xml .m2/settings.xml
-
-trilha "configurando classpath para workspace do eclipse"
-mvn -Declipse.workspace="$HOME/workspace" eclipse:configure-workspace
