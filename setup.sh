@@ -97,7 +97,7 @@ sudo -u postgres psql -U postgres -d postgres -c "create database pld"
 trilha "criando use pld senha pld"
 sudo -u postgres psql -U postgres -d postgres -c "create user pld with encrypted password 'pld'"
 trilha "dando acesso a pld para banco pld"
-sudo -u postgres psql -U postgres -d postgres -c "grant all privileges on database dude to pld;"
+sudo -u postgres psql -U postgres -d postgres -c "grant all privileges on database pld to pld;"
 
 trilha "instalando mysql"
 sudo apt install mysql-server
