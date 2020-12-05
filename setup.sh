@@ -80,13 +80,13 @@ sudo apt-get install libgconf-2-4
 sudo apt-get install libunwind8
 
 trilha "instalando MSSQL-SERVER"
-curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add –
-curl https://packages.microsoft.com/config/ubuntu/18.04/mssql-server-2019.list | sudo tee /etc/apt/sources.list.d/mssql-server.list
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/18.04/mssql-server-2019.list)"
 sudo apt-get update
 sudo apt-get install mssql-server
 
 trilha "configurando MSSQL-SERVER"
-sudo /opt/mssql/bin/sqlservr-setup
+sudo /opt/mssql/bin/mssql-conf setup
 
 trilha "instalando POSTGRE"
 sudo apt install postgresql postgresql-contrib
