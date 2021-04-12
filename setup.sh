@@ -94,8 +94,13 @@ sudo apt install postgresql postgresql-contrib
 trilha "configurando POSTGRE"
 trilha "criando banco de dados pld"
 sudo -u postgres psql -U postgres -d postgres -c "create database pld"
+
 trilha "criando use pld senha pld"
 sudo -u postgres psql -U postgres -d postgres -c "create user pld with encrypted password 'pld'"
+
+trilha "tornado usuario pld SUPERUSER"
+sudo -u postgres psql -U postgres -d postgres -c "ALTER USER pld WITH SUPERUSER"
+
 trilha "dando acesso a pld para banco pld"
 sudo -u postgres psql -U postgres -d postgres -c "grant all privileges on database pld to pld;"
 
