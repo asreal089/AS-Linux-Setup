@@ -64,11 +64,12 @@ sudo apt install yarn
 sudo apt install nodejs
 sudo apt install npm
 
-trilha "instalando JDK 8 corretto Amazon"
-wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
-sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
-sudo apt update
-sudo apt install -y java-1.8.0-amazon-corretto-jdk
+trilha "instalando open JDK 8"
+#wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
+#sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+#sudo apt update
+#sudo apt install -y java-1.8.0-amazon-corretto-jdk
+sudo apt install openjdk-8-jdk
 
 trilha "instalando DBEAVER"
 wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
