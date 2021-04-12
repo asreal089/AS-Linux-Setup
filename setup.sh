@@ -113,7 +113,6 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 
 trilha "isntalando VScode"
-deb [arch=amd64] http://packages.microsoft.com/repos/vscode stable main
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo apt-get update
@@ -122,29 +121,3 @@ sudo apt-get install code
 trilha "instalando Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
-
-trilha "baixando arquivos de Ambiente java AML"
-curl http://mailing.amlconsulting.com.br/arquivos/arquivosPaulo.tar.gz --output ambienteJava.tar.gz
-
-trilha "Descompactando ambienteJava"
-tar xvzf ambienteJava.tar.gz -C $PWD
-
-trilha "Descompactando Eclipse"
-tar xvzf eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz -C $HOME/eclipse
-
-trilha "criando Diretorio para instalações de ambienteJava da AML"
-mkdir "JAVA_AML_SETUP"
-
-trilha "Descompactando eclipse, mvn e jdk para diretorio install"
-tar xvzf eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz -C "$HOME/JAVA_AML_SETUP"
-tar xvzf apache-maven-3.3.3-bin.tar.gz -C "$HOME/JAVA_AML_SETUP"
-tar xvzf jdk1.7.tar.gz -C "$HOME/JAVA_AML_SETUP"
-
-trilha "configurando Variaveis de Ambiente do java"
-echo  'export JAVA_HOME=$HOME/JAVA_AML_SETUP/jdk1.7.0_17' >> ~/.bashrc 
-echo  'export M2_HOME=$HOME/JAVA_AML_SETUP/apache-maven-3.3.3' >> ~/.bashrc 
-echo  'export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"' >> ~/.bashrc 
-echo  'export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"' >> ~/.bashrc
-
-trilha "movendo settings.xml para diretorio do M2"
-mv settings.xml .m2/settings.xml
