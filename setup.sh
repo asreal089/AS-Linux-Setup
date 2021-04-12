@@ -48,6 +48,9 @@ trilha "instalando mercurial"
 
 sudo apt-get install mercurial
 
+trilha "instalando zsh"
+sudo apt-get install zsh
+
 trilha "install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
